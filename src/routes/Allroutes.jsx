@@ -17,6 +17,12 @@ import TecnicosActivos from "../pages/admin/tecnicos/TecnicosActivos";
 import TecnicosInactivos from "../pages/admin/tecnicos/TecnicosInactivos";
 
 
+
+//tecnico
+import CasosPorResolverTabla from '../pages/tecnico/CasosPorResolverTabla';
+import MisCasosTabla from '../pages/tecnico/MisCasosTabla';
+import CasosResueltosTabla from '../pages/tecnico/CasosResueltosTabla';
+
 export default function Allroutes() {
 
   return (
@@ -39,6 +45,13 @@ export default function Allroutes() {
             <Route path="/adminEstadisticas" element={<AdminEstadisticas/>}/>
             <Route path="/tecnicosActivos" element={<TecnicosActivos/>}/>
             <Route path="/tecnicosInactivos" element={<TecnicosInactivos/>}/>
+
+        
+            {/* tecnico */}
+            <Route path="/casos-por-resolver" element={<CasosPorResolverTabla />} />
+            <Route path="/mis-casos" element={<MisCasosTabla />} />
+            <Route path="/casos-resueltos" element={<CasosResueltosTabla />} />
+            
         </Route>
     </Routes>
   )
