@@ -153,6 +153,7 @@ export default function AdminSolicitud() {
             data={solicitudes}
             pagination
             paginationComponentOptions={paginationOptions}
+            noDataComponent="No hay solicitudes por resolver"
             highlightOnHover
             striped
           />
