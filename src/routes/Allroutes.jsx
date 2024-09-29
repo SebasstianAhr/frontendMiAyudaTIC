@@ -5,7 +5,6 @@ import RegisterLogin from '../pages/register/RegisterLogin';
 import ForgotPassword from '../pages/forgotPassword/ForgotPassword';
 
 import PrivateRoutes from "./private.routes";
-import Tecnico from "../pages/tecnico/Tecnico";
 import Funcionario from '../pages/funcionario/Funcionario';
 import Home from "../pages/home/Home";
 import AdminSolicitud from "../pages/admin/AdminSolicitud";
@@ -37,7 +36,6 @@ export default function Allroutes() {
         {/* rutas privadas */}
         <Route element={<PrivateRoutes/>}>
             <Route path="/funcionario" element={<Funcionario/>}/>
-            <Route path="/tecnico" element={<Tecnico/>}/>
             <Route path="/adminSolicitud" element={<AdminSolicitud/>}/>
             <Route path="/adminTecnicos" element={<AdminTecnicos/>}/>
             <Route path="/adminAmbientes" element={<AdminAmbientes/>}/>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "../../../layouts/appLayout/AppLayout";
 import AdminLayout from "../../../layouts/adminLayout/AdminLayout";
-import TecnicosLayout from "../../../layouts/tecnicosLayouut/TecnicosLayout";
 import DataTable from "react-data-table-component";
 import { getTecnicosInactivos, reactivarTecnico } from "../../../services/tecnicos.services";
 import { toast } from "react-toastify";
+import AdminTecnicosLayout from "../../../layouts/adminTecnicosLayout/AdminTecnicosLayout";
 
 export default function TecnicosInactivos() {
   const [tecnicosInactivos, setTecnicosInactivos] = useState([]);
@@ -74,7 +74,7 @@ export default function TecnicosInactivos() {
   return (
     <AppLayout>
       <AdminLayout>
-        <TecnicosLayout>
+        <AdminTecnicosLayout>
           <main className="pl-8 py-8">
             <h2 className="text-xl font-bold mb-4">Técnicos Inactivos</h2>
             <div className="rounded-lg shadow-lg">
@@ -91,7 +91,7 @@ export default function TecnicosInactivos() {
               />
             </div>
           </main>
-        </TecnicosLayout>
+        </AdminTecnicosLayout>
       </AdminLayout>
     </AppLayout>
   );

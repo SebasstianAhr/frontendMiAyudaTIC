@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axiosConfig from '../.././services/axios';
 import DataTable from 'react-data-table-component';
 import AppLayout from "../../layouts/appLayout/AppLayout";
-import TecnicoLayout from '../../layouts/tecnicoLayout/tecnicoLayout';
+import TecnicoLayout from '../../layouts/tecnicoLayout/TecnicoLayout';
 
 const MisCasosTabla = () => {
   const [cases, setCases] = useState([]);

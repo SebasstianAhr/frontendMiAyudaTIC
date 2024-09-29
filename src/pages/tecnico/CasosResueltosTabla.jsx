@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import AppLayout from '../../layouts/appLayout/AppLayout';
-import TecnicoLayout from '../../layouts/tecnicoLayout/tecnicoLayout';
+import TecnicoLayout from '../../layouts/tecnicoLayout/TecnicoLayout';
 // import ReactToPrint from 'react-to-print'; // Si decides usar la funcionalidad de impresión
 
 const CasosResueltosTabla = () => {
