@@ -45,3 +45,33 @@ export const asignarSolicitudTecnico = async (solicitudId, tecnicoId) => {
     throw error;
   }
 };
+
+export const HistorialSolicitudesFuncionario = async () => {
+  const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
+  try {
+    const response = await axiosConfig.get('/solicitud/historial', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data.solicitudesFinalizadas;
+  } catch (error) {
+    console.error('Error al obtener el historial de solicitudes:', error);
+    throw error;
+  }
+};
+
+export const HistorialSolicitudesLider = async () => {
+  const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
+  try {
+    const response = await axiosConfig.get('/solicitud/historialSolicitudes', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data.data; // Los datos están en la propiedad `data`
+  } catch (error) {
+    console.error('Error al obtener el historial de solicitudes:', error);
+    throw error;
+  }
+};

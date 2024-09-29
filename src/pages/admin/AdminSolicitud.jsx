@@ -8,12 +8,14 @@ import AppLayout from "../../layouts/appLayout/AppLayout";
 import AdminLayout from "../../layouts/adminLayout/AdminLayout";
 import { toast } from "react-toastify";
 import DataTable from "react-data-table-component";
+import AdminSolicitudLayout from "../../layouts/adminLayout/AdminSolicitudLayout";
 
 export default function AdminSolicitud() {
   const [solicitudes, setSolicitudes] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [tecnicos, setTecnicos] = useState([]);
   const [selectedSolicitud, setSelectedSolicitud] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchSolicitudes() {
@@ -25,6 +27,8 @@ export default function AdminSolicitud() {
         setSolicitudes(sortedData);
       } catch (error) {
         console.error("Error al cargar solicitudes:", error);
+      }finally {
+        setLoading(false);
       }
     }
     fetchSolicitudes();
@@ -145,12 +149,14 @@ export default function AdminSolicitud() {
   return (
     <AppLayout>
       <AdminLayout>
+        <AdminSolicitudLayout>
         <main className="pl-8 py-8">
           <h2 className="text-xl font-bold mb-4">Gestion solicitudes</h2>
 
           <DataTable
             columns={columns}
             data={solicitudes}
+            progressPending={loading}
             pagination
             paginationComponentOptions={paginationOptions}
             noDataComponent="No hay solicitudes por resolver"
@@ -183,6 +189,7 @@ export default function AdminSolicitud() {
             </div>
           </div>
         )}
+        </AdminSolicitudLayout>
       </AdminLayout>
     </AppLayout>
   );

@@ -8,7 +8,7 @@ import {
 } from "../../services/tecnicos.services";
 import { toast } from "react-toastify";
 import DataTable from "react-data-table-component";
-import AdminTecnicosLayout from "../../layouts/adminTecnicosLayout/AdminTecnicosLayout";
+import AdminTecnicosLayout from "../../layouts/adminLayout/AdminTecnicosLayout";
 
 export default function AdminTecnicos() {
   const [tecnicos, setTecnicos] = useState([]);

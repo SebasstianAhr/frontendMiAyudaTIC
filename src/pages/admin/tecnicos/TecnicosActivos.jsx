@@ -4,7 +4,7 @@ import AdminLayout from "../../../layouts/adminLayout/AdminLayout";
 import DataTable from "react-data-table-component";
 import { getTecnicosActivos, inactivarTecnico } from "../../../services/tecnicos.services";
 import { toast } from "react-toastify";  // Si ya tienes Toastify configurado
-import AdminTecnicosLayout from "../../../layouts/adminTecnicosLayout/AdminTecnicosLayout";
+import AdminTecnicosLayout from "../../../layouts/adminLayout/AdminTecnicosLayout";
 
 export default function TecnicosActivos() {
   const [tecnicosActivos, setTecnicosActivos] = useState([]);
