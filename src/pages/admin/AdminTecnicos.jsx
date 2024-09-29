@@ -8,7 +8,7 @@ import {
 } from "../../services/tecnicos.services";
 import { toast } from "react-toastify";
 import DataTable from "react-data-table-component";
-import TecnicosLayout from "../../layouts/tecnicosLayouut/TecnicosLayout";
+import AdminTecnicosLayout from "../../layouts/adminTecnicosLayout/AdminTecnicosLayout";
 
 export default function AdminTecnicos() {
   const [tecnicos, setTecnicos] = useState([]);
@@ -106,7 +106,7 @@ export default function AdminTecnicos() {
   return (
     <AppLayout>
       <AdminLayout>
-        <TecnicosLayout>
+        <AdminTecnicosLayout>
           <main className="pl-8 py-8">
             <h2 className="text-xl font-bold mb-4">Tecnicos por aprobar</h2>
             <div className="rounded-lg shadow-lg">
@@ -124,7 +124,7 @@ export default function AdminTecnicos() {
               />
             </div>
           </main>
-        </TecnicosLayout>
+        </AdminTecnicosLayout>
       </AdminLayout>
     </AppLayout>
   );

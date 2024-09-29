@@ -40,7 +40,7 @@ export default function LoginForm() {
           navigate("/funcionario");
           break;
         case "tecnico":
-          navigate("/tecnico");
+          navigate("/mis-casos");
           break;
         case "lider":
           navigate("/adminSolicitud");

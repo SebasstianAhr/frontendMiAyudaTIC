@@ -5,7 +5,6 @@ import RegisterLogin from '../pages/register/RegisterLogin';
 import ForgotPassword from '../pages/forgotPassword/ForgotPassword';
 
 import PrivateRoutes from "./private.routes";
-import Tecnico from "../pages/tecnico/Tecnico";
 import Funcionario from '../pages/funcionario/Funcionario';
 import Home from "../pages/home/Home";
 import AdminSolicitud from "../pages/admin/AdminSolicitud";
@@ -16,6 +15,12 @@ import AdminEstadisticas from "../pages/admin/AdminEstadisticas";
 import TecnicosActivos from "../pages/admin/tecnicos/TecnicosActivos";
 import TecnicosInactivos from "../pages/admin/tecnicos/TecnicosInactivos";
 
+
+
+//tecnico
+import CasosPorResolverTabla from '../pages/tecnico/CasosPorResolverTabla';
+import MisCasosTabla from '../pages/tecnico/MisCasosTabla';
+import CasosResueltosTabla from '../pages/tecnico/CasosResueltosTabla';
 
 export default function Allroutes() {
 
@@ -31,7 +36,6 @@ export default function Allroutes() {
         {/* rutas privadas */}
         <Route element={<PrivateRoutes/>}>
             <Route path="/funcionario" element={<Funcionario/>}/>
-            <Route path="/tecnico" element={<Tecnico/>}/>
             <Route path="/adminSolicitud" element={<AdminSolicitud/>}/>
             <Route path="/adminTecnicos" element={<AdminTecnicos/>}/>
             <Route path="/adminAmbientes" element={<AdminAmbientes/>}/>
@@ -39,6 +43,13 @@ export default function Allroutes() {
             <Route path="/adminEstadisticas" element={<AdminEstadisticas/>}/>
             <Route path="/tecnicosActivos" element={<TecnicosActivos/>}/>
             <Route path="/tecnicosInactivos" element={<TecnicosInactivos/>}/>
+
+        
+            {/* tecnico */}
+            <Route path="/casos-por-resolver" element={<CasosPorResolverTabla />} />
+            <Route path="/mis-casos" element={<MisCasosTabla />} />
+            <Route path="/casos-resueltos" element={<CasosResueltosTabla />} />
+            
         </Route>
     </Routes>
   )
