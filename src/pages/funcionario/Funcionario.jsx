@@ -90,8 +90,9 @@ export default function Funcionario() {
 
   return (
     <AppLayout>
-      <main className="w-full flex gap-8 justify-center py-8">
-        <div className="w-full max-w-[30%] p-8 border rounded-md">
+      <main className="w-full flex justify-center">
+      <div className="w-full max-w-[90%] pl-4  flex gap-8 py-8">
+        <div className="w-full max-w-[20%] p-4 border rounded-md">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">
             Crear Solicitud
           </h2>
@@ -151,10 +152,11 @@ export default function Funcionario() {
             </div>
           </form>
         </div>
-        <div>
+        <div className="w-full">
           <h3 className="text-lg font-semibold">Historial de solicitudes creadas</h3>
           <HistorialFuncionario/>
         </div>
+      </div>
       </main>
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">

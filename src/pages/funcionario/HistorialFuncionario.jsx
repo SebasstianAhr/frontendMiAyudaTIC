@@ -17,11 +17,19 @@ export default function HistorialFuncionario() {
     fetchHistorial();
   }, []);
 
+  const paginationOptions = {
+    rowsPerPageText: "Filas por página",
+    rangeSeparatorText: "de",
+    noRowsPerPage: false,
+    selectAllRowsItem: true,
+    selectAllRowsItemText: "Todos",
+  };
+
   // Configuración de las columnas de la tabla
   const columnas = [
     {
-      name: 'Descripción',
-      selector: (row) => row.descripcion,
+      name: 'Código',
+      selector: (row) => row.codigoCaso,
       sortable: true,
     },
     {
@@ -30,13 +38,57 @@ export default function HistorialFuncionario() {
       sortable: true,
     },
     {
-      name: 'Estado',
-      selector: (row) => row.estado,
+      name: 'Descripción',
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
       name: 'Ambiente',
       selector: (row) => (row.ambiente ? row.ambiente.nombre : 'N/A'),
+      sortable: true,
+    },
+    {
+      name: "IMAGEN",
+      cell: (row) =>
+        row.foto ? (
+          <a
+            href={row.foto.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Ver Foto
+          </a>
+        ) : (
+          "No disponible"
+        ),
+    },
+    {
+      name: 'Estado',
+      cell: (row) => {
+        let estadoClass = '';
+        let estadoTexto = row.estado;
+    
+        // Asignar colores según el estado
+        switch (row.estado) {
+          case 'solicitado':
+            estadoClass = 'bg-blue-400 text-white px-2 py-1 rounded';
+            break;
+          case 'asignado':
+            estadoClass = 'bg-yellow-400 text-white px-2 py-1 rounded';
+            break;
+          case 'pendiente':
+            estadoClass = 'bg-orange-400 text-white px-2 py-1 rounded';
+            break;
+          case 'finalizado':
+            estadoClass = 'bg-green-400 text-white px-2 py-1 rounded';
+            break;
+          default:
+            estadoClass = 'bg-gray-400 text-white px-2 py-1 rounded';
+        }
+    
+        return <span className={estadoClass}>{estadoTexto}</span>;
+      },
       sortable: true,
     },
     {
@@ -52,14 +104,17 @@ export default function HistorialFuncionario() {
   ];
 
   return (
-    <div className="p-4">
+    <div>
       <DataTable
         columns={columnas}
         data={historial}
-        pagination // Habilitar la paginación
+        paginationComponentOptions={paginationOptions}
+        pagination
         highlightOnHover
         striped
         noDataComponent="No hay solicitudes finalizadas."
+        defaultSortField="codigoCaso" // Campo por el que se ordena
+        defaultSortAsc={true} // Orden descendente (de mayor a menor)
       />
     </div>
   );
