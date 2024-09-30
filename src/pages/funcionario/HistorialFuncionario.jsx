@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 
 export default function HistorialFuncionario() {
   const [historial, setHistorial] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para el filtro de búsqueda
 
   useEffect(() => {
     const fetchHistorial = async () => {
@@ -103,18 +104,32 @@ export default function HistorialFuncionario() {
     },
   ];
 
+  // Filtrar los datos según el término de búsqueda
+  const filteredData = historial.filter((row) =>
+    row.codigoCaso.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Buscar por código..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Manejar el cambio del input
+          className="border p-2 rounded w-full"
+        />
+      </div>
       <DataTable
         columns={columnas}
-        data={historial}
+        data={filteredData} // Usar los datos filtrados
         paginationComponentOptions={paginationOptions}
         pagination
         highlightOnHover
         striped
         noDataComponent="No hay solicitudes finalizadas."
         defaultSortField="codigoCaso" // Campo por el que se ordena
-        defaultSortAsc={true} // Orden descendente (de mayor a menor)
+        defaultSortAsc={true} // Orden ascendente (de menor a mayor)
       />
     </div>
   );

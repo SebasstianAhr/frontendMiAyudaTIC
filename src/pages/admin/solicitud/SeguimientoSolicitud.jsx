@@ -8,6 +8,7 @@ import { HistorialSolicitudesLider } from "../../../services/solicitud.services"
 export default function SeguimientoSolicitud() {
   const [solicitudes, setSolicitudes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
 
   useEffect(() => {
     const fetchHistorial = async () => {
@@ -23,6 +24,10 @@ export default function SeguimientoSolicitud() {
     fetchHistorial();
   }, []);
 
+  const filteredSolicitudes = solicitudes.filter((solicitud) =>
+    solicitud.codigoCaso.toLowerCase().includes(searchTerm.toLowerCase())
+  ); // Filtrando solicitudes por código
+
   const paginationOptions = {
     rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
@@ -34,7 +39,7 @@ export default function SeguimientoSolicitud() {
   const columnas = [
     {
       name: "Código del Caso",
-      selector: (row) => row.codigoCaso, // Agregando código del caso
+      selector: (row) => row.codigoCaso,
       sortable: true,
     },
     {
@@ -75,10 +80,9 @@ export default function SeguimientoSolicitud() {
     },
     {
       name: "Técnico",
-      selector: (row) => (row.tecnico ? row.tecnico.nombre : "N/A"), // Nombre del técnico
+      selector: (row) => (row.tecnico ? row.tecnico.nombre : "N/A"),
       sortable: true,
     },
-
     {
       name: "Solución",
       selector: (row) =>
@@ -107,22 +111,28 @@ export default function SeguimientoSolicitud() {
     <AppLayout>
       <AdminLayout>
         <AdminSolicitudLayout>
-        <main className="pl-8 py-8">
+          <main className="pl-8 py-8">
+            <h2 className="text-xl font-bold mb-4">Seguimiento de Solicitudes</h2>
 
-          <h2 className="text-xl font-bold mb-4">Seguimiento de Solicitudes</h2>
-          <DataTable
-            columns={columnas}
-            data={solicitudes}
-            progressPending={loading}
-            paginationComponentOptions={paginationOptions}
-            pagination
-            highlightOnHover
-            striped
-            noDataComponent="No hay solicitudes disponibles."
-          />
-          
+            <input
+              type="text"
+              placeholder="Buscar por código de caso"
+              className="mb-4 p-2 border rounded w-full"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda
+            />
+
+            <DataTable
+              columns={columnas}
+              data={filteredSolicitudes} // Usar solicitudes filtradas
+              progressPending={loading}
+              paginationComponentOptions={paginationOptions}
+              pagination
+              highlightOnHover
+              striped
+              noDataComponent="No hay solicitudes disponibles."
+            />
           </main>
-
         </AdminSolicitudLayout>
       </AdminLayout>
     </AppLayout>
