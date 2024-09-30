@@ -9,7 +9,7 @@ export default function NavSolicitud() {
         <li> Solicitudes asignadas </li>
       </Link>
       <Link to="/seguimiento"  className="font-medium border-b-2  border-verde-sena text-verde-sena hover:text-azul-sena hover:border-azul-sena transition-all">
-        <li> Seguimieto </li>
+        <li> Seguimiento </li>
       </Link>
       
     </ul>

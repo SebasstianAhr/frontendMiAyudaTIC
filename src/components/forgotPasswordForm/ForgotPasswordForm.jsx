@@ -25,7 +25,7 @@ export default function ForgotPasswordForm() {
             icon={faLock}
           />
           <p className="text-center mb-2 font-medium">
-            ¿Tienes problemas para iniciar seccion?
+            ¿Tienes problemas para iniciar sesión?
           </p>
           <p className="text-center text-slate-600">
             Ingresa tu correo electronico y te enviaremos un enlace para que
