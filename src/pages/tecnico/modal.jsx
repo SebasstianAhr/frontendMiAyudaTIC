@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './css/modal.css';
 
@@ -14,11 +14,21 @@ const SolutionModal = ({
   setSolutionType,
   caseTypes // Recibe los tipos de caso desde las props
 }) => {
+  // Estado para la imagen
+  const [selectedImage, setSelectedImage] = useState(null);
+
   // Validar que caseTypes es un array
   if (!Array.isArray(caseTypes)) {
     console.error('caseTypes debe ser un array', caseTypes);
     return null; // Opcional: puedes mostrar un mensaje de error o un estado alternativo aquí
   }
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file)); // Crear una URL temporal para previsualizar la imagen
+    }
+  };
 
   return (
     <Modal
@@ -36,12 +46,12 @@ const SolutionModal = ({
       }}>
         <div className="mb-4">
           <label htmlFor="solutionDescription" className="block text-sm font-medium text-gray-700">Descripción de la Solución:</label>
-          <input
+          <textarea
             id="solutionDescription"
-            type="text"
             value={solutionDescription} // Asegúrate de que tenga un valor definido
             onChange={(e) => setSolutionDescription(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm resize-y" // Agregamos 'resize-y' para permitir ajuste vertical
+            rows={2} // Establece el número de filas visibles
             required
           />
         </div>
@@ -79,6 +89,24 @@ const SolutionModal = ({
           </select>
         </div>
 
+        <div className="mb-4">
+          <label htmlFor="imageUpload" className="block text-sm font-medium text-gray-700">Cargar Imagen:</label>
+          <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+
+        {selectedImage && (
+          <div className="mb-4">
+            <h3 className="text-sm font-medium text-gray-700">Previsualización de la Imagen:</h3>
+            <img src={selectedImage} alt="Previsualización" className="mt-2 w-full h-auto border border-gray-300 rounded-md" />
+          </div>
+        )}
+
         <div className="flex justify-end gap-4">
           <button
             type="submit"
@@ -100,5 +128,3 @@ const SolutionModal = ({
 };
 
 export default SolutionModal;
-
-

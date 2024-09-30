@@ -56,20 +56,81 @@ const CasosPorResolverTabla = () => {
   }, []);
 
   const columns = [
-    { name: 'ID', selector: row => row._id },
-    { name: 'Descripción', selector: row => row.descripcion },
-    { name: 'Fecha', selector: row => new Date(row.fecha).toLocaleDateString() },
-    { name: 'Estado', selector: row => row.estado },
-    { name: 'Código de Caso', selector: row => row.codigoCaso },
+    {
+      name: 'Código de Caso',
+      selector: row => row.codigoCaso,
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.codigoCaso}</div>
+      ),
+    },
+    {
+      name: 'Fecha',
+      selector: row => row.fecha,
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.fecha}</div>
+      ),
+    },
+    {
+      name: 'Ambiente',
+      selector: row => row.ambiente?.nombre || 'Sin asignar',
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.ambiente?.nombre || 'Sin asignar'}</div>
+      ),
+    },
+    {
+      name: 'Descripción',
+      selector: row => row.descripcion,
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.descripcion}</div>
+      ),
+    },
+    {
+      name: 'Usuario',
+      selector: row => row.usuario?.nombre || 'No disponible',
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.usuario?.nombre || 'No disponible'}</div>
+      ),
+    },
+    {
+      name: "Foto",
+      cell: (row) =>
+        row.foto ? (
+          <a
+            href={row.foto.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline break-words overflow-hidden max-w-xs"
+          >
+            Ver Foto
+          </a>
+        ) : (
+          <div className="break-words overflow-hidden max-w-xs">Sin foto</div>
+        ),
+    },
+    {
+      name: 'Teléfono',
+      selector: row => row.telefono || 'No disponible',
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.telefono || 'No disponible'}</div>
+      ),
+    },
+    {
+      name: 'Estado',
+      selector: row => row.estado,
+      cell: row => (
+        <div className="break-words overflow-hidden max-w-xs">{row.estado}</div>
+      ),
+    },
     {
       name: 'Acciones',
       cell: row => (
         <button onClick={() => openModal(row)}>
           Solucionar Caso
         </button>
-      )
+      ),
     }
   ];
+  
 
   const openModal = (caseData) => {
     setSelectedCase(caseData);
