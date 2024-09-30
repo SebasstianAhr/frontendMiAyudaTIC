@@ -49,10 +49,22 @@ export default function AdminSolicitud() {
   const handleAssignClick = async (tecnicoId) => {
     if (!selectedSolicitud || !tecnicoId) return;
     try {
+      // Asignar la solicitud al técnico
       await asignarSolicitudTecnico(selectedSolicitud._id, {
         tecnico: tecnicoId._id,
       });
+  
+      // Mostrar mensaje de éxito
       toast.success("Solicitud asignada con éxito");
+  
+      // Filtrar la solicitud asignada fuera del estado de solicitudes
+      setSolicitudes((prevSolicitudes) =>
+        prevSolicitudes.filter(
+          (solicitud) => solicitud._id !== selectedSolicitud._id
+        )
+      );
+  
+      // Cerrar el modal
       setShowModal(false);
     } catch (error) {
       toast.error("Error al asignar la solicitud");
