@@ -3,7 +3,7 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import AppLayout from '../../layouts/appLayout/AppLayout';
 import TecnicoLayout from '../../layouts/tecnicoLayout/TecnicoLayout';
-// import ReactToPrint from 'react-to-print'; // Si decides usar la funcionalidad de impresión
+// import ReactToPrint from 'react-to-print'; 
 
 const CasosResueltosTabla = () => {
   const [cases, setCases] = useState([]);
@@ -20,7 +20,7 @@ const CasosResueltosTabla = () => {
           },
         });
   
-        console.log('Respuesta de la API:', response.data); // Para depurar la respuesta de la API
+        console.log('Respuesta de la API:', response.data); 
   
         if (response.data && response.data.solicitudesFinalizadas) {
           setCases(response.data.solicitudesFinalizadas);
@@ -70,14 +70,14 @@ const CasosResueltosTabla = () => {
           {row.solucion.descripcionSolucion ? row.solucion.descripcionSolucion : 'No disponible'}
         </div>
       ),
-      width: '200px', // Establece el ancho aquí también
+      width: '200px', 
     },
     {
       name: 'Evidencia',
       cell: (row) =>
-        row.foto ? (
+        row.solucion.evidencia ? (
           <a
-            href={row.foto.url}
+            href={row.solucion.evidencia.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:underline break-words overflow-hidden max-w-xs"
@@ -124,7 +124,7 @@ const CasosResueltosTabla = () => {
       <div>
         <DataTable
           columns={columns}
-          data={filteredCases} // Aquí se usa el filtro de búsqueda
+          data={filteredCases} 
           pagination
           responsive
         />
