@@ -117,9 +117,12 @@ export default function AdminEstadisticas() {
     <AppLayout>
       <AdminLayout>
         <div className="flex items-center flex-col">
-          <h1 className="mt-8 text-lg font-semibold">Estadísticas de Solicitudes</h1>
-          <div className="flex justify-center items-center">
-            <div className="">
+          <h1 className="my-8 text-lg font-semibold">
+            Estadísticas de Solicitudes
+          </h1>
+          <div className="flex justify-center items-center gap-12">
+            <div className="flex flex-col items-center">
+              <h2 className="text-lg font-semibold">Estadisticas por año</h2>
               <label htmlFor="yearSelect">Seleccione el año:</label>
               <select
                 id="yearSelect"
@@ -150,7 +153,9 @@ export default function AdminEstadisticas() {
                 )}
               </div>
             </div>
-            <div>
+            <div className="flex flex-col items-center">
+              <h2 className="text-lg font-semibold">Estadisticas por mes</h2>
+
               <div
                 style={{ width: "600px", margin: "0 auto", marginTop: "50px" }}
               >
