@@ -60,7 +60,7 @@ export default function AdminAmbientes() {
   return (
     <AppLayout>
       <AdminLayout>
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="pl-8 py-8  rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Administrar Ambientes de Formación
           </h2>
@@ -69,7 +69,7 @@ export default function AdminAmbientes() {
               e.preventDefault();
               handleCreateOrUpdate();
             }}
-            className="flex flex-col sm:flex-row items-center gap-4 mb-6"
+            className="flex flex-col sm:flex-row items-center gap-4 mb-6 pr-4"
           >
             <input
               type="text"
